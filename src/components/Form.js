@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import * as yup from 'yup'
+import schema from '../validation/schema'
 
 const initialValues = {
   name: '',
@@ -18,7 +20,13 @@ export default function Form({ submit }) {
   const [values, setValues] = useState(initialValues)
   const [errors, setErrors] = useState(initialErrors)
 
-  const validate = (name, value) => {}
+  const validate = (name, value) => {
+    yup
+      .reach(schema, name)
+      .validate(value)
+      .then(() => setErrors((prev) => ({ ...prev, [name]: '' })))
+      .catch((err) => setErrors((prev) => ({ ...prev, [name]: err.errors[0] })))
+  }
 
   const handleChange = (event) => {
     const { name, value, checked, type } = event.target
@@ -27,6 +35,10 @@ export default function Form({ submit }) {
     validate(name, actualValue)
 
     setValues((prev) => ({ ...prev, [name]: actualValue }))
+  }
+
+  const resetForm = () => {
+    setValues(() => initialValues)
   }
 
   const handleSubmit = (event) => {
