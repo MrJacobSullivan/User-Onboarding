@@ -7,7 +7,7 @@ const initialTeam = []
 export default function App() {
   const [team, setTeam] = useState(initialTeam)
 
-  const addMember = (newMember) => {
+  const postMember = (newMember) => {
     axios
       .post('https://reqres.in/api/users', newMember)
       .then((res) => {
@@ -17,7 +17,9 @@ export default function App() {
       .finally(() => {})
   }
 
-  const onSubmit = () => {}
+  const onSubmit = (newMember) => {
+    postMember(newMember)
+  }
 
   return (
     <div>

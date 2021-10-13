@@ -37,12 +37,17 @@ export default function Form({ submit }) {
     setValues((prev) => ({ ...prev, [name]: actualValue }))
   }
 
-  const resetForm = () => {
-    setValues(() => initialValues)
-  }
-
   const handleSubmit = (event) => {
     event.preventDefault()
+
+    const newMember = {
+      name: values.name.trim(),
+      email: values.email.trim(),
+      password: values.password,
+      tos: values.tos,
+    }
+
+    submit(newMember)
   }
 
   return (
