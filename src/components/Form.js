@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import * as yup from 'yup'
 import schema from '../validation/schema'
 
@@ -19,6 +19,7 @@ const initialErrors = {
 export default function Form({ submit }) {
   const [values, setValues] = useState(initialValues)
   const [errors, setErrors] = useState(initialErrors)
+  const [disabled, setDisabled] = useState(true)
 
   const validate = (name, value) => {
     yup
@@ -49,6 +50,10 @@ export default function Form({ submit }) {
 
     submit(newMember)
   }
+
+  useEffect(() => {
+    schema.isValid(values).then((valid) => setDisabled(() => !valid))
+  }, [values])
 
   return (
     <form onSubmit={handleSubmit}>
@@ -84,7 +89,7 @@ export default function Form({ submit }) {
           <input type='checkbox' name='tos' checked={values.tos} onChange={handleChange} />
         </label>
 
-        <button>submit</button>
+        <button disabled={disabled}>submit</button>
       </div>
     </form>
   )
