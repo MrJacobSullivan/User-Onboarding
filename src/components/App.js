@@ -1,11 +1,12 @@
-import { useState } from 'react'
 import Form from './Form'
 
 export default function App() {
+  const onSubmit = () => {}
+
   return (
     <div>
       <h1>Onboarding</h1>
-      <Form />
+      <Form submit={onSubmit} />
     </div>
   )
 }
