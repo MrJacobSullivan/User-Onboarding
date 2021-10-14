@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import axios from 'axios'
+import { Main, Container } from './Styled'
 import Form from './Form'
 
 const initialTeam = []
@@ -23,15 +24,17 @@ export default function App() {
   }
 
   return (
-    <div>
-      <h1>Onboarding</h1>
-      <Form submit={onSubmit} />
+    <Main>
+      <Container>
+        <h1>Onboarding</h1>
+        <Form submit={onSubmit} />
 
-      <div>
-        {team.map((member) => (
-          <pre>{JSON.stringify(member)}</pre>
-        ))}
-      </div>
-    </div>
+        <div>
+          {team.map((member) => (
+            <pre>{JSON.stringify(member)}</pre>
+          ))}
+        </div>
+      </Container>
+    </Main>
   )
 }

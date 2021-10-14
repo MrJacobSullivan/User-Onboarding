@@ -57,7 +57,7 @@ export default function Form({ submit }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2>Add a Team Member</h2>
+      <h3>Add a Team Member</h3>
 
       <div>
         <h4>Information</h4>
