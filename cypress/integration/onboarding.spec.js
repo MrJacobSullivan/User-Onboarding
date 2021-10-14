@@ -78,4 +78,17 @@ describe('Onboarding App', () => {
       cy.contains('test@email.com').should('exist')
     })
   })
+
+  describe('Validating form', () => {
+    const errorDiv = () => cy.get('div[id=errors]')
+
+    it('should allow valid inputs', () => {
+      nameInput().type('Test')
+      emailInput().type('test@email.com')
+      passwordInput().type('test')
+      tosInput().click()
+
+      errorDiv().should('have.text', '')
+    })
+  })
 })

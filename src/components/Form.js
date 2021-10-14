@@ -63,7 +63,7 @@ export default function Form({ submit }) {
       <div>
         <h4>Information</h4>
 
-        <div>
+        <div id='errors'>
           <div>{errors.name}</div>
           <div>{errors.email}</div>
           <div>{errors.password}</div>
