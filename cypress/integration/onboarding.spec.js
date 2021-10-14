@@ -16,4 +16,20 @@ describe('Onboarding App', () => {
     tosInput().should('exist')
     submitButton().should('exist')
   })
+
+  describe('Filling out elements', () => {
+    it('should start out with the submit button disabled', () => {
+      submitButton().should('be.disabled')
+    })
+
+    it('should allow for input', () => {
+      nameInput().should('have.value', '').type('Test').should('have.value', 'Test')
+      emailInput()
+        .should('have.value', '')
+        .type('test@email.com')
+        .should('have.value', 'test@email.com')
+      passwordInput().should('have.value', '').type('test').should('have.value', 'test')
+      tosInput().should('not.be.checked').click().should('be.checked')
+    })
+  })
 })
