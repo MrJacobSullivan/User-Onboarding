@@ -49,6 +49,7 @@ export default function Form({ submit }) {
     }
 
     submit(newMember)
+    setDisabled((prev) => !prev)
   }
 
   useEffect(() => {

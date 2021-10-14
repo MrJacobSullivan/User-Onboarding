@@ -17,7 +17,7 @@ describe('Onboarding App', () => {
     submitButton().should('exist')
   })
 
-  describe('Filling out elements', () => {
+  describe('Filling out input elements', () => {
     it('should start out with the submit button disabled', () => {
       submitButton().should('be.disabled')
     })
@@ -39,6 +39,18 @@ describe('Onboarding App', () => {
       tosInput().click()
 
       submitButton().should('be.enabled')
+    })
+  })
+
+  describe('Submitting form', () => {
+    it('should submit the form when the button is pressed', () => {
+      nameInput().type('Test')
+      emailInput().type('test@email.com')
+      passwordInput().type('test')
+      tosInput().click()
+
+      submitButton().click()
+      submitButton().should('be.disabled')
     })
   })
 })
