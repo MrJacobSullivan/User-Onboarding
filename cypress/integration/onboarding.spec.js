@@ -31,5 +31,14 @@ describe('Onboarding App', () => {
       passwordInput().should('have.value', '').type('test').should('have.value', 'test')
       tosInput().should('not.be.checked').click().should('be.checked')
     })
+
+    it('should enable submit button when valid inputs are present', () => {
+      nameInput().type('Test')
+      emailInput().type('test@email.com')
+      passwordInput().type('test')
+      tosInput().click()
+
+      submitButton().should('be.enabled')
+    })
   })
 })
