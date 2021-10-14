@@ -12,8 +12,15 @@ export default function App() {
     axios
       .post('https://reqres.in/api/users', newMember)
       .then((res) => {
-        console.log(res)
-        setTeam((prev) => [res.data, ...prev])
+        const data = res.data
+        setTeam((prev) => [
+          {
+            name: data.name,
+            email: data.email,
+            id: data.id,
+          },
+          ...prev,
+        ])
       })
       .catch((err) => console.error(err))
       .finally(() => {})
@@ -31,7 +38,10 @@ export default function App() {
 
         <div>
           {team.map((member) => (
-            <pre>{JSON.stringify(member)}</pre>
+            <div key={member.id}>
+              <p>{member.name}</p>
+              <p>{member.email}</p>
+            </div>
           ))}
         </div>
       </Container>
