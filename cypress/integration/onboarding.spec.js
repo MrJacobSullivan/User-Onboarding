@@ -65,5 +65,17 @@ describe('Onboarding App', () => {
       passwordInput().should('have.value', '')
       tosInput().should('not.be.checked')
     })
+
+    it('should add new member to page', () => {
+      nameInput().type('Test')
+      emailInput().type('test@email.com')
+      passwordInput().type('test')
+      tosInput().click()
+
+      submitButton().click()
+
+      cy.contains('Test').should('exist')
+      cy.contains('test@email.com').should('exist')
+    })
   })
 })
