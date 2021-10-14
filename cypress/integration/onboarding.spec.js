@@ -52,5 +52,18 @@ describe('Onboarding App', () => {
       submitButton().click()
       submitButton().should('be.disabled')
     })
+
+    it('should clear form on submission', () => {
+      nameInput().type('Test')
+      emailInput().type('test@email.com')
+      passwordInput().type('test')
+      tosInput().click()
+
+      submitButton().click()
+      nameInput().should('have.value', '')
+      emailInput().should('have.value', '')
+      passwordInput().should('have.value', '')
+      tosInput().should('not.be.checked')
+    })
   })
 })
