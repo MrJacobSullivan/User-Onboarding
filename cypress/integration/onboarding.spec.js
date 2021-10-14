@@ -94,5 +94,27 @@ describe('Onboarding App', () => {
       errorDiv().should('not.have.text', 'Password is required')
       errorDiv().should('not.have.text', 'ToS must be accepted')
     })
+
+    it('should show proper error for name input', () => {
+      nameInput().type(' ').clear()
+      errorDiv().should('have.text', 'Name is required')
+    })
+
+    it('should show proper error for email input', () => {
+      emailInput().type('test')
+      errorDiv().should('have.text', 'Must be a valid email address')
+      emailInput().clear()
+      errorDiv().should('have.text', 'Email is required')
+    })
+
+    it('should show proper error for password input', () => {
+      passwordInput().type(' ').clear()
+      errorDiv().should('have.text', 'Password is required')
+    })
+
+    it('should show proper error for tos input', () => {
+      tosInput().click().click()
+      errorDiv().should('have.text', 'ToS must be accepted')
+    })
   })
 })
